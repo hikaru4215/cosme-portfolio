@@ -21,3 +21,4 @@ class LogoutView(views.LogoutView):
 class SignupView(views.SignupView):
 	template_name = 'accounts/signup.html'
 	form_class = SignupUserForm
+
