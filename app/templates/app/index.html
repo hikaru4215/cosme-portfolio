@@ -1,0 +1,266 @@
+{% extends "app/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+
+<div class="container index-wrap col-10">
+	<div class="d-flex align-items-center">
+		<h1 class="text-center col-sm-5">
+			SkinType
+			<span class="check">Check</span><br>
+			<span class="skincare">Skin Care</span>
+		</h1>
+		<div class="line"></div>
+		<div class="my-auto first-content col-sm-5">
+			<p class="text-center">現在の肌状態やお悩みなど、チェックしていただくとあなたに最適なお手入れ方法と商品をご案内します。</p>
+		</div>
+	</div>
+</div>
+
+<div class="container index">
+	<form method="post" id="skin">
+		{% csrf_token %}
+		<div class="bg-color-w cp_ipradio check-wrap">
+			<h5 class="d-flex">
+				<span class="question">Q1</span>
+				<span class="puestion-title">肌はカサつきやすいですか？</span>
+			</h5>
+			<ul class="d-flex justify-content-center check-list row check input-btn" id="dry">
+				<li class="list_item">
+					<label for="dry_1">
+						<input type="radio" class="option-input" id="dry_1" name="skintype_dry" value="10">
+						よくある
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="dry_2">
+						<input type="radio" class="option-input" id="dry_2" name="skintype_dry" value="6">
+						時々ある
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="dry_3">
+						<input type="radio" class="option-input" id="dry_3" name="skintype_dry" value="3">
+						あまりない
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="dry_4">
+						<input type="radio" class="option-input" id="dry_4" name="skintype_dry" value="0">
+						ない
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+			</ul>
+			<div class="dotted2 dotted3"></div>
+			<h5 class="d-flex">
+				<span class="question">Q2</span>
+				<span class="puestion-title">肌に脂っぽさやベタつきはありますか？</span>
+			</h5>
+			<ul class="d-flex justify-content-center check-list row check input-btn check-wrap2">
+				<li class="list_item">
+					<label for="oily_1">
+						<input type="radio" class="option-input" id="oily_1" name="skintype_oil" value="10">
+						よくある
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="oily_2">
+						<input type="radio" class="option-input" id="oily_2" name="skintype_oil" value="6">
+						時々ある
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="oily_3">
+						<input type="radio" class="option-input" id="oily_3" name="skintype_oil" value="3">
+						あまりない
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="oily_4">
+						<input type="radio" class="option-input" id="oily_4" name="skintype_oil" value="0">
+						ない
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+			</ul>
+			<div class="dotted2 dotted3"></div>
+			<h5 class="d-flex">
+				<span class="question">Q3</span>
+				<span class="puestion-title">あなたの気になる肌悩みを順番に選んでください。</span>
+			</h5>
+			<ul class="d-flex justify-content-center check-list row input-btn">
+				<li class="boxes list_item">
+					<label for="trouble1">
+						<span class="check_order" id="0"></span>
+						<input type="checkbox" id="trouble1" class="option-input">
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+						シワ
+					</label>
+				</li>
+				<li class="boxes list_item">
+					<label for="trouble2">
+						<span class="check_order" id="1"></span>
+						<input type="checkbox" id="trouble2" class="option-input">
+						髭剃り負け
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="boxes list_item">
+					<label for="trouble3">
+						<span class="check_order" id="2"></span>
+						<input type="checkbox" id="trouble3" class="option-input">
+						毛穴
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="boxes list_item">
+					<label for="trouble4">
+						<span class="check_order" id="3"></span>
+						<input type="checkbox" id="trouble4" class="option-input">
+						ニキビ
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+			</ul>
+			<div class="dotted2 dotted3"></div>
+			<input type="text" value="" id="target" name="trouble" hidden>
+			<h5 class="d-flex">
+				<span class="question">Q4</span>
+				<span class="puestion-title">あなたの年代は？</span>
+			</h5>
+			<ul class="d-flex check-list check3 row input-btn">
+				<li class="list_item">
+					<label for="age_1">
+						<input type="radio" class="option-input" id="age_1" name="age" value="10">
+						10代~20代
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="age_2">
+						<input type="radio" class="option-input" id="age_2" name="age" value="30">
+						30代~40代
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="age_3">
+						<input type="radio" class="option-input" id="age_3" name="age" value="50">
+						50代以上
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+			</ul>
+			<div class="dotted2 dotted3"></div>
+			<h5 class="d-flex">
+				<span class="question">Q5</span>
+				<span class="puestion-title">スキンケア1つの製品にかけるお金はいくらですか？</span>
+			</h5>
+			<ul class="d-flex justify-content-center check-list row check input-btn">
+				<li class="list_item">
+					<label for="price_1">
+						<input type="radio" class="option-input" id="price_1" name="price" value="2000">
+						2,000未満
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="price_2">
+						<input type="radio" class="option-input" id="price_2" name="price" value="4000">
+						2,000〜4,000円
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="price_3">
+						<input type="radio" class="option-input" id="price_3" name="price" value="6000">
+						4,000〜6,000円
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+				<li class="list_item">
+					<label for="price_4">
+						<input type="radio" class="option-input" id="price_4" name="price" value="8000">
+						6,000円以上
+						<div class="check-active"></div>
+						<div class="check-active2"></div>
+					</label>
+				</li>
+
+			</ul>
+			<div class="check-btn d-flex justify-content-center">
+				<button class="btn" type="submit">結果を見る...</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+
+<script>
+	'use strict';
+
+// チェックボックス 
+var order = [];
+
+[].forEach.call(document.querySelectorAll('input[type="checkbox"]'), function (checkbox) {
+	'use strict';
+	checkbox.addEventListener('change', function () {
+		var previousLi = checkbox.parentNode.parentNode.previousElementSibling;
+		var index = 0;
+		while (previousLi !== null) {
+			previousLi = previousLi.previousElementSibling;
+			index += 1;
+		}
+
+		if (checkbox.checked) {
+			order.push(index);
+		} else {
+			order.splice(order.indexOf(index), 1);
+		}
+
+		document.getElementById("target").setAttribute("value", order);
+
+		let check_order = document.getElementsByClassName('check_order');
+		
+		for(var i = 0; i < check_order.length; i++) {
+			check_order[i].innerHTML = ""
+		}
+		
+		for (let i = 0; i < order.length; i++) {
+			document.getElementById(order[i]).innerHTML = i + 1;
+		}
+
+		for (let i = 0; i < order.length; i++) {
+			document.getElementById(order[i]).setAttribute("value", i+1);
+		}
+	});
+});
+</script>
+{% endblock %}

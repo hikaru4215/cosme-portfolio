@@ -1,0 +1,141 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head prefix="og: http://ogp.me/ns#">
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-7VGGFSX0PQ"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-7VGGFSX0PQ');
+	</script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="あなたの肌タイプは、どのタイプ？簡単な質問に答えるだけで、あなたの肌タイプとスキンケア方法がわかります。クチコミを見て、あなたに合うスキンケアアイテムをぜひ見つけてみてください。">
+	<meta property="og:title" content="【男性の肌タイプ診断】男性の肌の基礎知識">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://mens-cosme-first.work">
+	<meta property="og:image" content="https://mens-cosme-first.work/static/img/thumbnail.png">
+	<meta property="og:site_name" content="【男性の肌タイプ診断】男性の肌の基礎知識">
+	<meta property="og:description" content="あなたの肌タイプは、どのタイプ？簡単な質問に答えるだけで、あなたの肌タイプとスキンケア方法がわかります。">
+	<meta name="google-site-verification" content="aba6T2yZuKGixnSqT2v5hTsN2zq5LPCEA8jqxbikIR0" />
+	<meta name="Keywords" content="メンズコスメ, 肌チェック, スキンタイプ, スキンケア,肌タイプ, スキンケア方法"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="icon" href="{% static 'img/favicon.ico' %}">
+
+	<title>Men's Cosme</title>
+</head>
+
+<body>
+	<header class="container-fluid header">
+		<div class="header-top d-flex align-items-center">
+			<div class="container col-10">
+				<div class="d-flex justify-content-between header-ber">
+					<h6>男性のスキンケアがまとめてわかる</h6>
+					<ul class="d-flex">
+						{% if user.is_authenticated %}
+						<li>{{ user }}さん</li>
+						<li><a href="{% url 'account_logout' %}">ログアウト</a></li>
+						{% else %}
+						<li>ゲストさん</li>
+						<li><a href="{% url 'account_login' %}">ログイン</a></li>
+						<li><a href="{% url 'account_signup' %}">新規登録</a></li>
+						{% endif %}
+						<li><a href="{% url 'contact' %}">お問い合わせ</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="header-color d-flex align-items-center">
+			<div class="container col-10">
+				<div class="d-flex justify-content-between align-items-center header-nav-wrap">
+					<h4 class="header-nav-title d-flex">
+						<a href="{% url 'index' %}">
+							<img src="{% static 'img/title.png' %}" alt="">
+						</a>
+					</h4>
+					<nav class="header-nav">
+						<ul class="d-flex">
+							<li><a href="{% url 'index' %}">肌チェック</a></li>
+							<li><a href="{% url 'skin_feature' %}">肌の知識</a></li>
+							<li><a href="{% url 'review' %}">クチコミを見る</a></li>
+							<li><a href="{% url 'review_new' %}">クチコミする</a></li>
+							<li><a href="{% url 'myreview_list' %}">マイページ</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<div class="humberger-menu">
+			<input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+			<label for="openSidebarMenu" class="sidebarIconToggle">
+				<div class="spinner diagonal part-1"></div>
+				<div class="spinner horizontal"></div>
+				<div class="spinner diagonal part-2"></div>
+			</label>
+			<div id="sidebarMenu">
+				<ul class="sidebarMenuInner">
+					<li class="">
+						<a href="{% url 'index' %}">肌チェック</a>
+					</li>
+					<li class="">
+						<a href="{% url 'skin_feature' %}">肌の知識</a>
+					</li>
+					<li class="">
+						<a href="{% url 'review' %}">クチコミを見る</a>
+					</li>
+					<li class="">
+						<a href="{% url 'review_new' %}">クチコミする</a>
+					</li>
+					<li class="">
+						<a href="{% url 'myreview_list' %}">マイページ</a>
+					</li>
+					<li class="">
+						<a href="{% url 'contact' %}">お問い合わせ</a>
+					</li>
+					{% if user.is_authenticated %}
+					<li class="">
+						<a href="{% url 'account_logout' %}">ログアウト</a>
+					</li>
+					{% else %}
+					<li class="">
+						<a href="{% url 'account_signup' %}">新規登録</a>
+					</li>
+					<li class="">
+						<a href="{% url 'account_login' %}">ログイン</a>
+					</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+
+
+
+
+	</header>
+	</div>
+	<main>
+		{% block content %}
+		{% endblock %}
+	</main>
+
+
+
+	{% block extra_js %}
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+
+	{% endblock %}
+</body>
+<footer class="py-1">
+	<h6 class="text-center">COPYRIGHT @ <span>Men’s Cosme</span></h6>
+</footer>
+
+</html>

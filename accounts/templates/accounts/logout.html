@@ -1,0 +1,27 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<div class="container logout-wrap col-11">
+    <form method="post" class="form-auth">
+        {% csrf_token %}
+        <div class="col-10 mx-auto">
+            <h4 class="logout-title">ログアウト</h4>
+            <p>Men's Cosmeからログアウトします。一部のサイトが見れなくなります。<br>
+                ログアウトしてよろしいですか？
+            </p>
+            <div class="logout d-flex justify-content-center row">
+                <div class="logout-btn-bg">
+                    <button type="submit">はい</button>
+                </div>
+                <p>
+                    <a href="{% url 'index' %}" class="d-flex align-items-center justify-content-center">
+                        いいえ
+                    </a>
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

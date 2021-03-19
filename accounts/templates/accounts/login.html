@@ -1,0 +1,47 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container login-top col-11">
+    <form method="post" class="form-auth">
+        {% csrf_token %}
+        <div class="col-sm-7 col-10 login-title-wrap">
+            <h4 class="login-title">ログイン</h4>
+            <p class="login-content">
+                これより先は、会員専用サービスです。<br>
+                会員登録（無料）がお済みでない方は、<a href="{% url 'account_signup' %}">新規会員登録</a>をお願いします。
+            </p>
+        </div>
+        <div class="d-flex login-wrap row">
+            <div class="login col-sm-7 col-10 mx-auto">
+                <h4 class="pl-3">会員登録済みの方</h4>
+                <h5 class="pl-3">会員ID(メールアドレス)</h5>
+                <div class="write-field">
+                    {% render_field form.login class=""  placeholder="メールアドレス" %}
+                </div>
+                <h5 class="pl-3 pass">パスワード</h5>
+                <div class="write-field">
+                    {% render_field form.password class="" placeholder="パスワード" %}
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="btn-bg-color">
+                        <button class="" type="submit">登録</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="new-member-wrap col-lg-4">
+                <h4 class="pl-3">会員未登録の方</h4>
+                <div class="new-member mx-auto">
+                    <p class="text-center">ご登録していただくと、コスメのクチコミの閲覧、投稿することができます。クチコミを見て自分のスキンケアに取り入れてみてください。</p>
+                </div>
+                <a href="{% url 'account_signup' %}" class="d-flex justify-content-center mx-auto">新規メンバー登録</a>
+            </div>
+        </div>
+</div>
+
+</form>
+</div>
+
+{% endblock %}
