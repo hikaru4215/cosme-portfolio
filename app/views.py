@@ -16,3 +16,24 @@ from django.views.generic import View
 class IndexView(View):
 	def get(self, request, *args, **kwargs):
 		return render(request, 'app/index.html')
+
+class DryskinView(View):
+	def get(self, request, *args, **kwargs):
+		return render(request, 'app/dryskin.html')
+
+class OilyskinView(View):
+	def get(self, request, *args, **kwargs):
+		return render(request, 'app/oilyskin.html')
+
+class NormalskinView(View):
+	def get(self, request, *args, **kwargs):
+		return render(request, 'app/normalskin.html')
+
+class MixskinView(View):
+	def get(self, request, *args, **kwargs):
+		return render(request, 'app/mixskin.html')
+
+
+class SkinFeatureView(View):
+	def get(self, request, *args, **kwargs):
+		return render(request, 'app/skin_feature.html')
