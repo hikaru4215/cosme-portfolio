@@ -1,0 +1,171 @@
+{% extends "app/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="myreview-list-wrap mx-auto">
+        <h4>クチコミ詳細</h4>
+        <div class="myreview-list">
+            <div class="row d-flex justify-content-between">
+                <div class="mypage-review">
+                    <div class="review-list-bg mt-0">
+                        <div class="list-bg top-bg p-0">
+                            <h5 class="text-center">
+                                {{ review_data.user }}さん
+                            </h5>
+                            <div class="d-flex bottom-dotted row">
+                                {% if review_data.image %}
+                                <div class="img-center">
+                                    <img src="{{ review_data.image.url }}" alt="">
+                                </div>
+                                {% else %}
+                                <div class="detail-img-none">
+                                    <div class="none-img d-flex justify-content-center align-items-center">No <br>img</div>
+                                </div>
+                                {% endif %}
+                                <ul class="list">
+                                    <li>{{ review_data.brand }}</li>
+                                    <li>{{ review_data.product }}</li>
+                                    <li>{{ review_data.category }}</li>
+                                </ul>
+                            </div>
+                            <div class="dotted"></div>
+                            <ul class="list">
+                                <li class="list2">{{ review_data.score }}</li>
+                                <li class="dotted m-0"></li>
+                                <li class="list2">{{ review_data.comment|linebreaksbr }}</li>
+                                <li class="dotted m-0"></li>
+                                <li class="list2">{{ review_data.created }}</li>
+                                <li class="dotted m-0"></li>
+                                <li class="list2">
+                                    <a href="{% url 'review' %}"
+                                        class="d-flex justify-content-end align-items-center">一覧
+                                        <span class="material-icons">
+                                            navigate_next
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- 商品詳細の終わり -->
+                <!-- ユーザー情報 -->
+                <div class="mypage-allnew">
+                    <p>あなたのクチコミ件数</p>
+                    <div class="review-user-bg-there">
+                        <div class="review-user-none">
+                            <h5>{{ user_data.first_name }}さん</h5>
+                            <p class="review-num">クチコミ件数
+                                {% if count %}
+                                {{ count }}
+                                {% else %}
+                                0
+                                {% endif %}
+                                件</p>
+                            <div class="dotted"></div>
+                            <div class="d-flex justify-content-end profile my-profile">
+                                <p>
+                                    <a href="{% url 'review_new' %}">クチコミする</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ユーザーのクチコミがあれば -->
+                    <div class="">
+                        <p class="you-review">あなたのクチコミ</p>
+                        {% if new_review %}
+                        <div class="review-gray">
+                            <div class="review-white">
+                                <div class="new-image">
+                                    {% if new_review.image %}
+                                    <img src="{{ new_review.image.url }}">
+                                    {% else %}
+                                    <div class="none-img d-flex justify-content-center mx-auto align-items-center">No
+                                        <br>img
+                                    </div>
+                                    {% endif %}
+                                    <ul class="review-form-side">
+                                        <li>{{ new_review.brand }}</li>
+                                        <li>{{ new_review.product }}</li>
+                                        <li>{{ new_review.score }}</li>
+                                    </ul>
+                                </div>
+                                <div class="dotted"></div>
+                                <div class="review-edit text-center">
+                                    <a href="{% url 'review_edit' new_review.id %}">
+                                        編集
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="all-review-detail">
+                            <p class="you-review ">最新のクチコミ</p>
+                            <div class="review-gray">
+                                <div class="review-white">
+                                    <div class="new-image">
+                                        {% if new_data.image %}
+                                        <img src="{{ new_data.image.url }}">
+                                        {% else %}
+                                        <div class="none-img d-flex justify-content-center mx-auto align-items-center">
+                                            No
+                                            <br>img</div>
+                                        {% endif %}
+                                        <ul class="review-form-side">
+                                            <li>{{ new_data.brand }}</li>
+                                            <li>{{ new_data.product }}</li>
+                                            <li>{{ new_data.score }}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="dotted"></div>
+                                    <div class="review-edit text-center">
+                                        <a href="{% url 'review_detail' new_data.id %}" class="">詳細</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="my-review-detail-none">
+                            <h4>まだ投稿はありません</h4>
+                        </div>
+                    </div>
+                    <div class="all-review-detail">
+                        <p class="you-review">最新のクチコミ</p>
+                        <div class="review-gray">
+                            <div class="review-white">
+                                <div class="new-image">
+                                    {% if new_data.image %}
+                                    <img src="{{ new_data.image.url }}">
+                                    {% else %}
+                                    <div class="review-img-none">
+                                        <p class=" d-flex justify-content-center align-items-center">Non<br> Img</p>
+                                    </div>
+                                    {% endif %}
+                                    <ul class="review-form-side">
+                                        <li>{{ new_data.brand }}</li>
+                                        <li>{{ new_data.product }}</li>
+                                        <li>{{ new_data.score }}</li>
+                                    </ul>
+                                </div>
+                                <div class="dotted"></div>
+                                <div class="review-edit text-center">
+                                    <a href="{% url 'review_detail' new_data.id %}" class="">詳細</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
+
+{% endblock %}

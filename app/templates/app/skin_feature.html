@@ -1,0 +1,410 @@
+{% extends "app/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+	<div class="feature-move-wrap">
+		<ul class="d-flex text-center row justify-content-between">
+			<li class="feature-move1">スキンケアの方法</li>
+			<li class="feature-move2">
+				<a href="#damage" class="text-center">
+					<span class="material-icons">
+						keyboard_arrow_down
+					</span>
+					季節のダメージ
+				</a>
+			</li>
+			<li class="feature-move2">
+				<a href="#feature">
+					<span class="material-icons">
+						keyboard_arrow_down
+					</span>
+					肌の特徴
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="skincare-wrap">
+		<h4 class="text-center">スキンケアの方法と肌知識</h4>
+		<div class="feature-skincare">
+			<div class="d-flex  feature-skincare-title row">
+				<h4 class="col-lg-2 col-sm-4 col-12 text-center">洗顔</h4>
+				<h5 class="col-lg-10 col-sm-8 text-center">汚れを落とす</h5>
+			</div>
+			<p class="text-center">力加減は優しく、丁寧に</p>
+
+			<div class="d-flex justify-content-center row feature-wash-pic">
+				<div class="d-flex justify-content-center col-md-5">
+					<div>
+						<img src="{% static 'img/wash1.png' %}" alt="" class="feature-wash1">
+						<p class="text-center">もこもこ泡で手の摩擦を減らす。</p>
+					</div>
+				</div>
+				<div class="col-md-5 d-flex justify-content-center">
+					<div>
+						<img src="{% static 'img/wash2.png' %}" alt="" class="">
+						<p class="text-center">皮脂の多い、額や鼻。</p>
+					</div>
+				</div>
+				<div class="col-md-5 d-flex justify-content-center">
+					<div>
+						<img src="{% static 'img/wash4.png' %}" alt="" class="">
+						<p class="text-center">皮脂が少ない、頬や口周り。</p>
+					</div>
+				</div>
+				<div class="col-md-5 d-flex justify-content-center">
+					<div>
+						<img src="{% static 'img/wash3.png' %}" alt="" class="">
+						<p class="text-center">皮膚の薄い目周り。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="feature-skincare feature-toner">
+			<div class="d-flex feature-skincare-title row">
+				<h4 class="col-sm-4 col-12 col-lg-2 col-lg-2 text-center">化粧水</h4>
+				<h5 class="col-sm-8 col-lg-10 text-center">うるおいを与える</h5>
+			</div>
+			<img src="{% static 'img/spray.png' %}" alt="" class="spray-pic">
+			<p class="text-center">手のひらで覆いしっかり浸透<br>うるおい補給で肌を満たす</p>
+			<div class="d-flex justify-content-center row">
+				<img src="{% static 'img/toner3.png' %}" alt="">
+				<img src="{% static 'img/toner1.png' %}" alt="">
+				<img src="{% static 'img/toner2.png' %}" alt="">
+			</div>
+		</div>
+		<div class="feature-skincare feature-serum">
+			<div class="d-flex feature-skincare-title row">
+				<h4 class="col-sm-4 col-12 col-lg-2 text-center">美容液</h4>
+				<h5 class="col-sm-8 col-lg-10 text-center">うるおいを与える</h5>
+			</div>
+			<img src="{% static 'img/serum.png' %}" alt="" class="serum-pic">
+			<p class="text-center">
+				栄養素がたっぷり<br>
+				気になる悩みのお助けアイテム
+			</p>
+			<div class="d-flex justify-content-center align-items-center row">
+				<div class="serum-img-wrap">
+					<div class="d-flex">
+						<img src="{% static 'img/serum-pic1.png' %}" alt="">
+						<img src="{% static 'img/serum-pic2.png' %}" alt="">
+					</div>
+					<div class="d-flex">
+						<img src="{% static 'img/serum-pic5.png' %}" alt="">
+						<img src="{% static 'img/serum-pic6.png' %}" alt="">
+					</div>
+				</div>
+				<div class="col-md-5  col-12">
+					<h5 class="feature-trouble">気になるお悩みはありますか？</h5>
+					<p>
+						化粧水や乳液•クリームだけではなかなか解決できない時に使いましょう。<br>
+						また、予防として使っても良いでしょう。
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="feature-skincare feature-moisture">
+		<div class="d-flex feature-skincare-title row">
+			<h4 class="col-sm-4 col-12 col-lg-2 text-center">乳液/クリーム</h4>
+			<h5 class="col-sm-8 col-lg-10 text-center">肌をととのえる</h5>
+		</div>
+		<img src="{% static 'img/milk.png' %}" alt="" class="milk">
+		<img src="{% static 'img/cream-bttle.png' %}" alt="" class="cream-pic">
+		<p class="text-center">
+			肌のバリア機能強化<br>
+			水分が蒸発しないように蓋をする
+		</p>
+		<div class="d-flex justify-content-center moisture-cream row">
+			<div class="moisture">
+				<p class="text-center">乳液</p>
+				<ul class="">
+					<li>水分量が<strong>多く</strong>、油分量が<strong>少ない</strong></li>
+					<li><strong>さっぱり</strong>した使用感</li>
+				</ul>
+			</div>
+			<div class="cream">
+				<p class="text-center">クリーム</p>
+				<ul>
+					<li>水分量が<strong>少なく</strong>、油分量が<strong>多い</strong></li>
+					<li><strong>しっとり</strong>した使用感</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="feature-skincare feature-moisture">
+			<div class="d-flex feature-skincare-title">
+				<h4 class="col-2 text-center">クリーム</h4>
+				<h5 class="text-center">肌をととのえる</h5>
+			</div>
+			<p class="text-center">
+				肌のバリア機能強化<br>
+				水分が蒸発しないように蓋をする
+			</p>
+		</div> -->
+	<div class="feature-skincare feature-sunscreen">
+		<div class="d-flex feature-skincare-title row">
+			<h4 class="col-sm-4 col-12 col-lg-2 text-center">日焼け止め</h4>
+			<h5 class="col-sm-8 col-lg-10 text-center">紫外線から肌を守る</h5>
+		</div>
+		<img src="{% static 'img/sunscreen.png' %}" alt="" class="sunscreen-pic">
+		<p class="text-center">出かける15分前</p>
+		<div class="d-flex justify-content-center align-items-center row">
+			<img src="{% static 'img/21814.png' %}" alt="">
+			<p class="col-sm-6">肌に馴染むまでに時間がかかります。<br>出かける15分前には塗り紫外線から肌を守りましょう。</p>
+		</div>
+	</div>
+	<!-- ========================= -->
+	<!-- ========================= -->
+	<!-- ========================= -->
+	<!-- 季節 -->
+	<a href="" name="damage" id="page-link"></a>
+	<h4 class="text-center season-title">季節が与える肌ダメージ</h4>
+	<div class="season">
+		<div class="spring">
+			<div class="skin-feature-title d-flex">
+				<h4 class="title title-spring">春</h4>
+				<h4 class="sub-title">花粉による肌ダメージ</h4>
+			</div>
+			<div class="skin-feature">
+				<div class="d-flex align-items-center row">
+					<div class="col-sm-8 col-md-6 mx-auto">
+						<img src="{% static 'img/spring-pic.png' %}" alt="">
+					</div>
+					<div class="season-content-title mx-auto">
+						<h5>
+							知らないうちにダメージ<br>
+							毎日リセット！
+						</h5>
+						<p>
+							ギザギザしている花粉が1年で一番多い。<br>
+							肌がダメージを受けると肌荒れに。<br>
+							敏感肌対応、炎症を抑えるスキンケアを使う。</p>
+					</div>
+				</div>
+			</div>
+			<div class="feature-content">
+				<div class="d-flex justify-content-center">
+					<h4 class="second-title">春のスキンケアポイント</h4>
+				</div>
+				<div class="d-flex justify-content-center second-content row">
+					<div class="col-sm-4">
+						<img src="{% static 'img/spring1.png' %}" alt="" class="d-flex mx-auto">
+						<p class="mx-auto point point1 text-center">Point.1</p>
+						<p class="text-center">
+							花粉からのダメージを抑えるため、<br>肌のバリア機能を保とう。
+						</p>
+					</div>
+					<div class="col-sm-4">
+						<img src="{% static 'img/spring2.png' %}" alt="" class="d-flex mx-auto">
+						<p class="mx-auto point point2 text-center">Point.2</p>
+						<p>
+							悩みが出ないうちに、敏感肌対応、炎症を抑える
+							アイテムの使用がおすすめ。
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ========================= -->
+		<!-- ========================= -->
+		<!-- ========================= -->
+		<div class="summer">
+			<div class="skin-feature-title d-flex">
+				<h4 class="title summer-title">夏</h4>
+				<h4 class="sub-title">紫外線による肌ダメージ</h4>
+			</div>
+			<div class="skin-feature">
+				<div class="d-flex align-items-center row">
+					<div class="col-sm-8 col-md-6 mx-auto">
+						<img src="{% static 'img/season_summer.png' %}" alt="">
+					</div>
+					<div class="col-md-5 col-sm-8 col-12 mx-auto">
+						<h5>
+							肌ダメージ、8割が紫外線<br>
+							守って健康的な肌に！
+						</h5>
+						<p>短い時間で大きなダメージを与えるUVB、肌老化の原因となるUVAの2種類の紫外線量が多い。<br>
+							日々のスキンケアを入念にし、日焼け止めを取り入れる。</p>
+					</div>
+				</div>
+			</div>
+			<div class="feature-content">
+				<div class="d-flex justify-content-center">
+					<h4 class="second-title">夏のスキンケアポイント</h4>
+				</div>
+				<div class="d-flex justify-content-center second-content row">
+					<div class="col-sm-4">
+						<img src="{% static 'img/summer1.png' %}" alt="" class="d-flex mx-auto">
+						<p class="mx-auto point point1 text-center">Point.1</p>
+						<p>
+							肌に与えるダメージの8割が紫外線。<br>
+							日焼け止めを使い、肌を守りましょう。
+						</p>
+					</div>
+					<div class="col-sm-4">
+						<img src="{% static 'img/feature-summer.png' %}" alt="" class="d-flex mx-auto">
+						<p class="mx-auto point point2 text-center">Point.2</p>
+						<p>
+							皮脂が出やすい時期です。<br>朝夜の洗顔で汚れを落とし、清潔にしましょう。
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ========================= -->
+		<!-- ========================= -->
+		<!-- ========================= -->
+		<div class="summer">
+			<div class="skin-feature-title d-flex">
+				<h4 class="title autumn-title">秋</h4>
+				<h4 class="sub-title">気温差による肌ダメージ</h4>
+			</div>
+			<div class="skin-feature">
+				<div class="d-flex align-items-center row">
+					<div class="col-sm-8 col-md-5 mx-auto">
+						<img src="{% static 'img/autmun-pic.png' %}" alt="">
+					</div>
+					<div class="col-md-5 col-sm-8 col-12 mx-auto">
+						<h5>
+							スキンケアも衣替え<br>
+							予防して、乾燥知らず！
+						</h5>
+						<p>少しずつ気温が下がり、肌の水分蒸散量が多くなっていく。乾燥対策を早めにし、冬の乾燥を乗り越えれるれるように。
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="feature-content">
+				<div class="d-flex justify-content-center">
+					<h4 class="second-title">秋のスキンケアポイント</h4>
+				</div>
+				<div class="d-flex justify-content-center second-content row">
+					<div class="col-sm-4">
+						<img src="{% static 'img/autmun1.png' %}" alt="" class="d-flex mx-auto">
+						<p class="mx-auto point point1 text-center">Point.1</p>
+						<p>
+							紫外線、エアコンのダメージにより崩れたバリア機能。<br>うるおいを与えて、早めのケアをしよう。
+						</p>
+					</div>
+					<div class="col-sm-4">
+						<img src="{% static 'img/autmun2.png' %}" alt="" class="d-flex mx-auto">
+						<p class="mx-auto point point2 text-center">Point.2</p>
+						<p>
+							肌は生まれ変わるのに約1ヶ月かかります。<br>
+							乾燥を感じる前から対策をしておくことが重要です。
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ========================= -->
+		<!-- ========================= -->
+		<!-- ========================= -->
+		<div class="summer">
+			<div class="skin-feature-title d-flex">
+				<h4 class="title winter-title">冬</h4>
+				<h4 class="sub-title">乾燥による肌ダメージ</h4>
+			</div>
+			<div class="skin-feature">
+				<div class="d-flex align-items-center row">
+					<div class="col-sm-8 col-md-6 mx-auto">
+						<img src="{% static 'img/winter-pic.png' %}" alt="">
+					</div>
+					<div class="col-md-5 col-sm-8 col-12 mx-auto">
+						<div>
+							<h5>
+								肌にとって過酷な季節<br>
+								うるおい補給を第一に！
+							</h5>
+							<p>
+								肌にとって一番過酷な季節。<br>
+								乾燥は多くの悩みに繋がるので、乾燥対策を第一に。
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="feature-content">
+				<div class="d-flex justify-content-center">
+					<h4 class="second-title">冬のスキンケアポイント</h4>
+				</div>
+				<div class="d-flex justify-content-center second-content row">
+					<div class="col-sm-4">
+						<img src="{% static 'img/winter1.png' %}" alt="" class="d-flex mx-auto">
+						<p class="mx-auto point point1 text-center">Point.1</p>
+						<p>
+							うるおいを与えて、肌を柔らかく。<br>
+							肌のバリア機能を保つため、油分と水分をバランスよく与えましょう。
+						</p>
+					</div>
+					<div class="col-sm-4">
+						<img src="{% static 'img/winter2.png' %}" alt="" class="d-flex mx-auto">
+						<p class="mx-auto point point2 text-center">Point.2</p>
+						<p>
+							水分を保つことが難しい時期です。<br>
+							水分がなくなると、肌が硬くなります。日々のスキンケア時に触って確認しましょう。
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ============= -->
+	<!-- ============= -->
+	<!-- ============= -->
+	<a href="" name="feature" id="page-link"></a>
+	<h4 class="text-center men-title">男性の肌の特徴</h4>
+	<div>
+		<div class="d-flex justify-content-center">
+			<img src="{% static 'img/feature-men.png' %}" alt="" class="col-sm-8 col-lg-6">
+		</div>
+		<div class="d-flex justify-content-center">
+			<h4 class="second-title men-second-title">スキンケアポイント</h4>
+		</div>
+		<div class="d-flex justify-content-around row">
+			<div class="col-sm-4 men-point-wrap">
+				<div class="men-point men-point1">
+					<p class="feature-point text-center">ポイント1</p>
+				</div>
+				<p class="text-center">髭剃り</p>
+				<div class="dotted2"></div>
+				<ol>
+					<li>洗顔で汚れをとる</li>
+					<li>シェービング剤をぬる</li>
+					<li>毛流れに沿って剃る</li>
+					<li>スキンケアで保湿する</li>
+				</ol>
+			</div>
+			<div class="col-sm-4 men-point-wrap">
+				<div class="men-point men-point2">
+					<p class="feature-point text-center">ポイント2</p>
+				</div>
+				<p class="text-center">皮脂</p>
+				<div class="dotted2"></div>
+				<ul>
+					<li>朝夜の洗顔</li>
+					<li>スキンケアをする習慣</li>
+					<li>水分を肌に浸透させる</li>
+				</ul>
+			</div>
+			<div class="col-sm-4 men-point-wrap">
+				<div class="men-point men-point3">
+					<p class="feature-point text-center">ポイント3</p>
+				</div>
+				<p class="text-center">肌の厚み</p>
+				<div class="dotted2"></div>
+				<ul>
+					<li>厚く重たい</li>
+					<li>年齢を重ねると深いしわになりやすい</li>
+					<li>日焼け止めを塗り、肌の老化を防ぐ</li>
+					</p>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	{% endblock %}

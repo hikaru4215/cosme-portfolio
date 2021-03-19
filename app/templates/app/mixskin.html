@@ -1,0 +1,416 @@
+{% extends "app/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="container skin-type-aser-wrap">
+	<div class="skin-type-aser">
+		<ul class="d-flex text-center row">
+			<li class="skin-type-aser1">肌チェック結果</li>
+			<li class="skin-type-aser2">
+				<a href="#advice" class="text-center">
+					<span class="material-icons">
+						keyboard_arrow_down
+					</span>
+					アドバイス
+				</a>
+			</li>
+			<li class="skin-type-aser2">
+				<a href="#recommend">
+					<span class="material-icons">
+						keyboard_arrow_down
+					</span>
+					おすすめ商品
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="anser-wrap">
+		<div class="row">
+			<div class="anser row">
+				<h4>あなたは<span class="skin-type">混合肌タイプ</span>です...</h4>
+				<p>
+					肌のうるおいが不足し、皮脂が多く出ている状態。日本人に一番多い肌質と言われています。<br>乾燥している部分(多くはUゾーンと呼ばれるフェイスライン)、皮脂が多い部分(多くはTゾーンと呼ばれる額や鼻)が混在している肌質のことです。
+				</p>
+			</div>
+			<div class="cause-wrap row">
+				<h4>肌悩みの原因</h4>
+				<div class="d-flex justify-content-around row priority">
+					<div class="priority-wrap">
+						<div class="cause cause1 mx-auto">
+							<div class="cause-ball cause-ball1">
+								<h6 class="text-center">解決優先度
+									<span class="text-center num1">1</span>
+								</h6>
+							</div>
+						</div>
+						<div class="cause-text-wrap">
+							<ul class="cause-text">
+								<li>スキンケアの習慣化</li>
+								<li>紫外線</li>
+								<li>スキンケア方法の見直し</li>
+							</ul>
+						</div>
+					</div>
+					<div class="priority-wrap">
+						<div class="cause cause2 mx-auto">
+							<div class="cause-ball cause-ball2">
+								<h6 class="text-center">解決優先度
+									<span class="text-center num2">2</span>
+								</h6>
+							</div>
+						</div>
+						<div class="cause-text-wrap">
+							<ul class="">
+								<li>スキンケアアイテムの見直し</li>
+								<li>季節の要因</li>
+								<li>生活習慣による影響</li>
+							</ul>
+						</div>
+					</div>
+					<div class="priority-wrap">
+						<div class="cause cause3 mx-auto">
+							<div class="cause-ball cause-ball3">
+								<h6 class="text-center">解決優先度
+									<span class="text-center num3">3</span>
+								</h6>
+							</div>
+						</div>
+						<div class="cause-text-wrap">
+							<ul class="">
+								<li>ストレス</li>
+								<li>体調不良</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 skintype-dotted">
+					<div class="dotted"></div>
+				</div>
+				<div class="byuty-comment-wrap d-flex">
+					<img src="{% static 'img/dry_skin.png' %}" class="order-2">
+					<div class="byuty-comment order-lg-2">
+						<h5>健康的な肌とは</h5>
+						<ul class="health">
+							<li>触れると滑らかで弾力がある</li>
+							<li>肌表面にあるバリア機能が整っている</li>
+							<li>油分と水分のバランスがよく季節に左右されにくい</li>
+							<li>ちょっとしたトラブルができても治りやすく繰り返しにくい</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a href="" name="advice" id="page-link"></a>
+		<div class="advice-wrap">
+			<h4>スキンケアアドバイス</h4>
+			<div class="advice row">
+				<div class="d-flex justify-content-center advice-content-wrap row">
+					<div class="advice-content advice-content-left">
+						<h5>肌表面の汚れを<span class="accent">リセット</span></h5>
+						<p>洗顔をするときは力加減を意識し優しく汚れを落としてあげてください。<br>皮脂が多く出やすいTゾーンから洗い始めるなど、洗顔方法の見直しをしましょう。
+						</p>
+					</div>
+					<div class="advice-content">
+						<h5>栄養を<span class="accent">与えて</span>健康的な肌に</h5>
+						<p>化粧水での水分補給、乳液•クリームで保湿をして肌の働きを良好に保ちましょう。<br>塗る場所によってつける量をかえるなどの工夫がおすすめです。</p>
+					</div>
+					<div class="advice-content advice-content-left">
+						<h5>外的刺激から<span class="accent">ブロック</span></h5>
+						<p>ダメージが受けやすい肌質です。日焼け止めで肌にバリアをはり、しっかり外的刺激から肌を守りましょう。季節問わず使いましょう</p>
+					</div>
+					<div class="advice-content">
+						<h5>バリア機能を<span class="accent">整える</span></h5>
+						<p>肌表面のバリア機能がうまく働いていない可能性があります。<br>肌の水分と油分のバランスを保つようにしっかり与えましょう。特に乾燥しやすい場所には多めにつけるなど工夫も。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a href="" name="recommend" id="page-link"></a>
+		<div class="recommend">
+			{% if wash_recommend_data or toner_recommend_data or cream_recommend_data or sunscreen_recommend_data %}
+			<h4 class="recommend-item-title d-flex align-items-center">おすすめのアイテム</h4>
+			{% if wash_recommend_data %}
+			<div class="recommend-data-wrap d-flex row">
+				<div class="wash-recommend-data d-flex">
+					<div class="recommend-pic">
+						<img src="{{ wash_recommend_data.image.url }}" alt="">
+					</div>
+					<div class="recommend-comment">
+						<ul>
+							<li class="recommend-brand">{{ wash_recommend_data.brand }}</li>
+							<li class="recommend-product">{{ wash_recommend_data.product }}</li>
+							<li class="recommend-category">
+								&lt; 洗顔 &gt; {{ wash_recommend_data.capacity }}
+							</li>
+						</ul>
+						<ul class="d-flex trouble_name">
+							{% if wash_recommend_data.trouble_name1%}
+							<li class="trouble_name1">
+								{{ wash_recommend_data.trouble_name1 }}
+							</li>
+							{% endif %}
+							{% if wash_recommend_data.trouble_name2 %}
+							<li class="trouble_name2">
+								{{ wash_recommend_data.trouble_name2 }}
+							</li>
+							{% endif %}
+							{% if wash_recommend_data.trouble_name3 %}
+							<li class="trouble_name3">
+								{{ wash_recommend_data.trouble_name3 }}
+							</li>
+							{% endif %}
+							{% if wash_recommend_data.trouble_name4 %}
+							<li class="trouble_name4">
+								{{ wash_recommend_data.trouble_name4 }}
+							</li>
+							{% endif %}
+						</ul>
+						<div class="recommend-dotted dotted"></div>
+						<p class="recommend-content">{{ wash_recommend_data.content|linebreaksbr }}</p>
+						<div class="recommend-dotted dotted"></div>
+						<p class="recommend-price">
+							<span class="ml-2">価格</span>
+							{{ wash_recommend_data.price }}
+							<span class="ml-2">円</span>
+						</p>
+						<ul class="recommend-btn d-flex row">
+							<li class="offcial mx-auto">
+								<a class="btn" href="{{ wash_recommend_data.official_page }}" target="_blank">
+									公式サイト
+								</a>
+							</li>
+							<li class="rakuten mx-auto">
+								<a class="btn" href="{{ wash_recommend_data.rakuten_page }}" target="_blank">
+									楽天で詳細
+								</a>
+							</li>
+							<li class="amazon mx-auto">
+								<a class="btn" href="{{ wash_recommend_data.amazon_page }}" target="_blank">
+									Amazonで詳細
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				{% endif %}
+				{% if toner_recommend_data %}
+				<div class="wash-recommend-data d-flex">
+					<div class="recommend-pic">
+						<img src="{{ toner_recommend_data.image.url }}" alt="">
+					</div>
+					<div class="recommend-comment">
+						<ul>
+							<li class="recommend-brand">{{ toner_recommend_data.brand }}</li>
+							<li class="recommend-product">{{ toner_recommend_data.product }}</li>
+							<li class="recommend-category">
+								&lt; 化粧水 &gt; {{ toner_recommend_data.capacity }}
+							</li>
+						</ul>
+						<ul class="d-flex trouble_name">
+							{% if toner_recommend_data.trouble_name1%}
+							<li class="trouble_name1">
+								{{ toner_recommend_data.trouble_name1 }}
+							</li>
+							{% endif %}
+							{% if toner_recommend_data.trouble_name2 %}
+							<li class="trouble_name2">
+								{{ toner_recommend_data.trouble_name2 }}
+							</li>
+							{% endif %}
+							{% if toner_recommend_data.trouble_name3 %}
+							<li class="trouble_name3">
+								{{ toner_recommend_data.trouble_name3 }}
+							</li>
+							{% endif %}
+							{% if toner_recommend_data.trouble_name4 %}
+							<li class="trouble_name4">
+								{{ toner_recommend_data.trouble_name4 }}
+							</li>
+							{% endif %}
+						</ul>
+						<div class="recommend-dotted dotted"></div>
+						<p class="recommend-content">{{ toner_recommend_data.content|linebreaksbr }}</p>
+						<div class="recommend-dotted dotted"></div>
+						<p class="recommend-price">
+							<span class="mr-2">価格</span>
+							{{ toner_recommend_data.price }}
+							<span class="ml-2">円</span>
+						</p>
+						<ul class="recommend-btn d-flex row">
+							<li class="offcial mx-auto">
+								<a class="btn" href="{{ toner_recommend_data.official_page }}" target="_blank">
+									公式サイト
+								</a>
+							</li>
+							<li class="rakuten mx-auto">
+								<a class="btn" href="{{ toner_recommend_data.rakuten_page }}" target="_blank">
+									楽天で詳細
+								</a>
+							</li>
+							<li class="amazon mx-auto">
+								<a class="btn" href="{{ toner_recommend_data.amazon_page }}" target="_blank">
+									Amazonで詳細
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				{% endif%}
+				{% if cream_recommend_data %}
+				<div class="wash-recommend-data d-flex">
+					<div class="recommend-pic">
+						<img src="{{ cream_recommend_data.image.url }}" alt="">
+					</div>
+					<div class="recommend-comment">
+						<ul>
+							<li class="recommend-brand">{{ cream_recommend_data.brand }}</li>
+							<li class="recommend-product">{{ cream_recommend_data.product }}</li>
+							<li class="recommend-category">
+								&lt; 乳液•クリーム &gt; {{ cream_recommend_data.capacity }}
+							</li>
+						</ul>
+						<ul class="d-flex trouble_name">
+							{% if cream_recommend_data.trouble_name1%}
+							<li class="trouble_name1">
+								{{ cream_recommend_data.trouble_name1 }}
+							</li>
+							{% endif %}
+							{% if cream_recommend_data.trouble_name2 %}
+							<li class="trouble_name2">
+								{{ cream_recommend_data.trouble_name2 }}
+							</li>
+							{% endif %}
+							{% if cream_recommend_data.trouble_name3 %}
+							<li class="trouble_name3">
+								{{ cream_recommend_data.trouble_name3 }}
+							</li>
+							{% endif %}
+							{% if cream_recommend_data.trouble_name4 %}
+							<li class="trouble_name4">
+								{{ cream_recommend_data.trouble_name4 }}
+							</li>
+							{% endif %}
+						</ul>
+						<div class="recommend-dotted dotted"></div>
+						<p class="recommend-content">{{ cream_recommend_data.content|linebreaksbr }}</p>
+						<div class="recommend-dotted dotted"></div>
+						<p class="recommend-price">
+							<span class="mr-2">価格</span>
+							{{ cream_recommend_data.price }} 
+							<span class="ml-2">円</span>
+						</p>
+						<ul class="recommend-btn d-flex row">
+							<li class="offcial mx-auto">
+								<a class="btn" href="{{ cream_recommend_data.official_page }}" target="_blank">
+									公式サイト
+								</a>
+							</li>
+							<li class="rakuten mx-auto">
+								<a class="btn" href="{{ cream_recommend_data.rakuten_page }}" target="_blank">
+									楽天で詳細
+								</a>
+							</li>
+							<li class="amazon mx-auto">
+								<a class="btn" href="{{ cream_recommend_data.amazon_page }}" target="_blank">
+									Amazonで詳細
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				{% endif %}
+				{% if sunscreen_recommend_data %}
+				<div class="wash-recommend-data d-flex">
+					<div class="recommend-pic">
+						<img src="{{ sunscreen_recommend_data.image.url }}" alt="">
+					</div>
+					<div class="recommend-comment">
+						<ul>
+							<li class="recommend-brand">{{ sunscreen_recommend_data.brand }}</li>
+							<li class="recommend-product">{{ sunscreen_recommend_data.product }}</li>
+							<li class="recommend-category">
+								&lt; 日焼け止め &gt; {{ sunscreen_recommend_data.capacity }}
+							</li>
+						</ul>
+						<ul class="d-flex trouble_name">
+							{% if sunscreen_recommend_data.trouble_name1%}
+							<li class="trouble_name1">
+								{{ sunscreen_recommend_data.trouble_name1 }}
+							</li>
+							{% endif %}
+							{% if sunscreen_recommend_data.trouble_name2 %}
+							<li class="trouble_name2">
+								{{ sunscreen_recommend_data.trouble_name2 }}
+							</li>
+							{% endif %}
+							{% if sunscreen_recommend_data.trouble_name3 %}
+							<li class="trouble_name3">
+								{{ sunscreen_recommend_data.trouble_name3 }}
+							</li>
+							{% endif %}
+							{% if sunscreen_recommend_data.trouble_name4 %}
+							<li class="trouble_name4">
+								{{ sunscreen_recommend_data.trouble_name4 }}
+							</li>
+							{% endif %}
+						</ul>
+						<div class="recommend-dotted dotted"></div>
+						<p class="recommend-content">{{ sunscreen_recommend_data.content|linebreaksbr }}</p>
+						<div class="recommend-dotted dotted"></div>
+						<p class="recommend-price">
+							<span class="mr-2">価格</span>
+							{{ sunscreen_recommend_data.price }} 
+							<span class="ml-2">円</span>
+						</p>
+						<ul class="recommend-btn d-flex row">
+							<li class="offcial mx-auto">
+								<a class="btn" href="{{ sunscreen_recommend_data.official_page }}" target="_blank">
+									公式サイト
+								</a>
+							</li>
+							<li class="rakuten mx-auto">
+								<a class="btn" href="{{ sunscreen_recommend_data.rakuten_page }}" target="_blank">
+									楽天で詳細
+								</a>
+							</li>
+							<li class="amazon mx-auto">
+								<a class="btn" href="{{ sunscreen_recommend_data.amazon_page }}" target="_blank">
+									Amazonで詳細
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				{% endif %}
+				{% else %}
+				<div class="">
+					<h4 class="recommend-item-title d-flex align-items-center">おすすめのアイテム</h4>
+					<div class="d-flex justify-content-center align-items-center dokeza">
+						<p class="mr-4">おすすめできる商品がありません。<br>
+							違う条件で探していただく見つかると思います。
+						</p>
+						<img src="{% static 'img/2829.png' %}">
+					</div>
+					<div class="review-nav d-flex justify-content-center">
+						<a href="{% url 'index' %}">
+							もう一度肌チェックをする &gt; 
+						</a>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

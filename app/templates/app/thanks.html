@@ -1,0 +1,23 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<div class="container contact-thanks-wrap col-11">
+    <div class="d-flex justify-content-center">
+        <div>
+            <h4 class="">お問い合わせありがとうございます。</h4>
+            <p>内容を確認いたしまして、ご連絡させて頂きます。<br>
+                回答にお時間がかかることもございます。しばらくお待ちください。
+            </p>
+            <div class="contact-thanks mx-auto">
+                <a href="{% url 'index' %}" class="d-flex align-items-center justify-content-center">ホームに戻る<span
+                        class="material-icons">
+                        navigate_next
+                    </span></a>
+            </div>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

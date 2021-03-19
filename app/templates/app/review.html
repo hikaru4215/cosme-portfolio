@@ -1,0 +1,210 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+	<div class="category-wrap">
+		<div class="category">
+			<div class="seach-wrap">
+				<div class="search">
+					<p class="pl-2">ブランド　製品検索</p>
+					<form method="get" action="{% url 'search' %}" class="d-flex align-items-center">
+						<input type="text" class="pl-2" name="keyword">
+						<button class="" type="submit"><span class="material-icons">
+								search
+							</span></button>
+					</form>
+				</div>
+			</div>
+			<div class="mt-3">
+				<div class="d-flex category-title-review align-items-center">
+					<h5 class="d-flex align-items-center pl-2">
+						クチコミを探す
+					</h5>
+					<img src="{% static 'img/icon.png' %}" alt="" class="comment-img">
+				</div>
+				<ul>
+					{% for category in category_data %}
+					<li class="">
+						<a href="{% url 'category' category %}" class="d-flex align-items-center">
+							<span class="material-icons">
+								navigate_next
+							</span>
+							{{ category.name }}
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div>
+				<!-- <h6>おすすめ度</h6> -->
+				<ul>
+					{% for score in score_data %}
+					<li class="">
+						<a href="{% url 'score' score %}" class="d-flex align-items-center">
+							<span class="material-icons">
+								navigate_next
+							</span>
+							{{ score.scores }}
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div>
+				<!-- <h6>プライス</h6> -->
+				<ul>
+					{% for price in price_data %}
+					<li>
+						<a href="{% url 'price' price %}" class="d-flex align-items-center">
+							<span class="material-icons">
+								navigate_next
+							</span>
+							{{ price.price }}
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex justify-content-end">
+		<div class="row">
+			<div class="review-page">
+					<h4 class="text-center">クチコミ</h4>
+				<p class="review-top-content text-center mt-3">
+					Men's Cosme新着のクチコミを紹介！<br>
+					みなさんの実際の声をチェックしてみてください。<br>
+					商品を使用した感想など、みなさんからの“クチコミ”もお待ちしております。
+				</p>
+				<div class="mb-2">
+					{% if keyword %}
+					<p class="keyword-wrap"><span class="keyword">『{{keyword}}』</span>を含むクチコミ{{ total_count }}件。
+					</p>
+					{% else %}
+					<div class="d-flex justify-content-center mb-3">
+						<div class="mr-2">
+							{{ total_count }}件中{{ all_review.start_index }}～{{ all_review.end_index }}件を表示
+						</div>
+						<div>
+							{% if all_review.has_previous %}
+							<a href="?page={{ all_review.previous_page_number }}" class="return">&#8810;</a>
+							{% endif %}
+							{% for num in all_review.paginator.page_range %}
+							<div class="page_num">
+								{% if all_review.number == num %}
+								<p class="active-page">
+									<a class="" href="#!">
+										{{ num }}
+									</a>
+								</p>
+								{% else %}
+								<a href="?page={{ num }}" class="next-page">{{ num }}</a>
+								{% endif %}
+							</div>
+							{% endfor %}
+							{% if all_review.has_next %}
+							<a href="?page={{ all_review.paginator.num_pages }}" class="">
+								&#8811;
+							</a>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				{% endif %}
+				<div class="d-flex row">
+					{% for review in all_review %}
+					<div class="review-wrap">
+						<div class="d-flex review">
+							<h5 class="review-user-name mb-1">
+								{{ review.user }}
+								<span>さん</span>
+							</h5>
+						</div>
+						<div class="review-bg">
+							<div class="d-flex review-img-top">
+								<div class="">
+									{% if review.image %}
+									<img src="{{ review.image.url }}" alt="">
+									{% else %}
+									<div class="none-img d-flex justify-content-center align-items-center">
+										No<br>img
+									</div>
+									{% endif %}
+								</div>
+								<div class="review-brand-name">
+									<ul class="">
+										<li>{{ review.brand }}</li>
+										<li>{{ review.product|truncatechars:30 }}</li>
+										<li>
+											<a href="{% url 'category' review.category %}">
+												{{ review.category }}
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<p class="review-score">
+								<a href="{% url 'score' review.score %}">
+									{{ review.score }}
+								</a>
+							</p>
+							<div class="coment-box">
+								<p>{{ review.comment|truncatechars:100 }}</p>
+							</div>
+							<p class="mt-2">{{ review.created }}</p>
+						</div>
+						<div class="d-flex justify-content-end">
+							<p class="review-detail-btn">
+								<a href="{% url 'review_detail' review.id %}" class="detail text-center">
+									詳細
+								</a>
+							</p>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="d-flex mb-2 justify-content-center">
+					{% if total_count == 0 %}
+					<p>まだ投稿はありません</p>
+					{% else %}
+					<div class="mr-2">
+						{% if keyword %}
+						{{ total_count }}件ヒットしました。
+						{% else %}
+						{{ total_count }}件中{{ all_review.start_index }}～{{ all_review.end_index }}件を表示
+						{% endif %}
+					</div>
+					<div class="d-flex justify-content-center ">
+						{% if all_review.has_previous %}
+						<a href="?page={{ all_review.previous_page_number }}" class="return">&#8810;</a>
+						{% endif %}
+						{% for num in all_review.paginator.page_range %}
+						<div class="page_num">
+							{% if all_review.number == num %}
+							<p class="active-page">
+								<a class="" href="#!">
+									{{ num }}
+								</a>
+							</p>
+							{% else %}
+							<a href="?page={{ num }}" class="next-page">{{ num }}</a>
+							{% endif %}
+						</div>
+						{% endfor %}
+						{% if all_review.has_next %}
+						<a href="?page={{ all_review.paginator.num_pages }}" class="">
+							&#8811;
+						</a>
+						{% endif %}
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	{% endblock %}

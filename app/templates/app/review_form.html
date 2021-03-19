@@ -1,0 +1,162 @@
+{% extends "app/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+
+<div class="container reviewform-top mx-auto">
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="reviewform-bg mx-auto">
+			<h4 class="">クチコミ投稿</h4>
+			<div class="reviewform-bg-w d-flex justify-content-between">
+				<div class="review">
+					<div class="reviewform-contact-wrap">
+						<p class="reviewform-contact text-center m-0">ご自身が使用した感想(使用感)をわかりやすく投稿してください。<br>
+							投稿したクチコミがMen’s Cosme メンバーが参考にし、役立てています。</p>
+					</div>
+					<div class="reviewform-wrap">
+						<h4>クチコミ投稿のご入力</h4>
+						<div class="reviewform">
+							<h5>ブランド名</h5>
+							<div class="reviewform-text">
+								{% render_field form.brand placeholder="ブランド名" %}
+							</div>
+							<h5>製品名<span class="must">(必須)</span></h5>
+							<div class="reviewform-text">
+								{% render_field form.product placeholder="製品名" %}
+							</div>
+							<h5>おすすめ度<span class="must">(必須)</span></h5>
+							<div class="reviewform-text">
+								{% render_field form.score %}
+							</div>
+							<h5>クチコミ内容<span class="must">(必須)</span></h5>
+							<div class="reviewform-textarea">
+								{% render_field form.comment placeholder="口コミを入力" %}
+							</div>
+							<h5>アイテムカテゴリ<span class="must">(必須)</span></h5>
+							<div class="reviewform-text">
+								{% render_field form.category %}
+							</div>
+							<h5>プライス</h5>
+							<div class="reviewform-text">
+								{% render_field form.price %}
+							</div>
+							<div class="reviewform-text" hidden>
+								{% render_field form.review_count %}
+							</div>
+							<h5>商品画像</h5>
+							<div class="form-img">
+								{{ form.image }}
+							</div>
+						</div>
+						<div class="text-center logout-btn-bg mx-auto">
+							<button class="btn" type="submit">投稿する</button>
+						</div>
+					</div>
+				</div>
+				<div class="user">
+					<p>あなたのクチコミ件数</p>
+					<div class="review-user-bg">
+						<div class="review-user">
+							<h5>{{ user_data.first_name }}さん</h5>
+							<p class="review-num">クチコミ件数 {{ count }} 件</p>
+							<div class="dotted"></div>
+							<div class="d-flex justify-content-end profile my-profile">
+								<p>
+									<a href="{% url 'review' %}">クチコミ一覧</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="my-review">
+						{% if user_review %}
+						<p>あなたのクチコミ</p>
+						<div class="review-gray">
+							<div class="review-white">
+								<div class="new-image">
+									{% if user_review.image %}
+									<img src="{{ user_review.image.url }}" class="">
+									{% else %}
+									<div class="review-img-none mx-auto d-flex justify-content-center align-items-center">
+										No<br> Img</div>
+									{% endif %}
+									<ul class="review-form-side">
+										<li></li>
+										<li>{{ user_review.brand }}</li>
+										<li>{{ user_review.product }}</li>
+										<li>{{ user_review.score }}</li>
+									</ul>
+								</div>
+								<div class="dotted"></div>
+								<div class="review-edit text-center">
+									<a href="{% url 'review_edit' user_review.id %}" class="">
+										編集</a>
+								</div>
+							</div>
+						</div>
+						<div class="all-review-new">
+							<p>最新のクチコミ</p>
+							{% if review %}
+							<div class="review-gray">
+								<div class="review-white">
+									<div class="new-image">
+										{% if review.image %}
+										<img src="{{ review.image.url }}" alt="">
+										{% else %}
+										<div
+										class="review-img-none mx-auto d-flex justify-content-center align-items-center">
+										No<br> Img</div>
+										{% endif %}
+										<ul class="review-form-side">
+											<li>{{ review.brand }}</li>
+											<li>{{ review.product }}</li>
+											<li>{{ review.score }}</li>
+										</ul>
+									</div>
+									<div class="dotted"></div>
+									<div class="review-edit text-center">
+										<a href="{% url 'review_detail' review.id %}" class="">詳細</a>
+									</div>
+								</div>
+							</div>
+							{% endif %}
+						</div>
+					</div>
+					{% else %}
+					<div class="all-review-new-none">
+						{% if review %}
+						<p>最新のクチコミ</p>
+						<div class="review-gray">
+							<div class="review-white">
+								<div class="new-image">
+									{% if review.image %}
+									<img src="{{ review.image.url }}">
+									{% else %}
+									<div class="review-img-none mx-auto d-flex justify-content-center align-items-center">
+									Non<br> Img</div>
+									{% endif %}
+									<ul class="review-form-side">
+										<li>{{ review.brand }}</li>
+										<li>{{ review.product }}</li>
+										<li>{{ review.score }}</li>
+									</ul>
+								</div>
+								<div class="dotted"></div>
+								<div class="review-edit text-center">
+									<a href="{% url 'review_detail' review.id %}" class="">詳細</a>
+								</div>
+							</div>
+						</div>
+						{% endif %}
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+
+
+{% endblock %}

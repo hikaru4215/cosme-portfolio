@@ -1,0 +1,218 @@
+{% extends "app/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+	<div class="myreview-list-wrap mx-auto">
+		<h4>My Page</h4>
+		<div class="myreview-list d-flex justify-content-between">
+			{% if all_review %}
+			<div class="mypage-review">
+				<h5 class="text-center">{{ user_data.first_name }}さんのクチコミ一覧</h5>
+				<div class="d-flex justify-content-between mb-2 page_num-top">
+					<div>
+						{{ count }}件中{{ all_review.start_index }}～{{ all_review.end_index }}件を表示
+					</div>
+					<div class="d-flex justify-content-center ">
+						{% if all_review.has_previous %}
+						<a href="?page={{ all_review.previous_page_number }}" class="return">&#8810;</a>
+						{% endif %}
+						{% for num in all_review.paginator.page_range %}
+						<div class="page_num">
+							{% if all_review.number == num %}
+							<p class="active-page">
+								<a class="" href="#!">
+									{{ num }}
+								</a>
+							</p>
+							{% else %}
+							<a href="?page={{ num }}" class="next-page">{{ num }}</a>
+							{% endif %}
+						</div>
+						{% endfor %}
+						{% if all_review.has_next %}
+						<a href="?page={{ all_review.paginator.num_pages }}" class="">
+							&#8811;
+						</a>
+
+						{% endif %}
+					</div>
+				</div>
+				<!-- クチコミ一覧 -->
+				{% for review in all_review %}
+				<div class="review-list-bg">
+					<div class="list-bg">
+						<div class="d-flex row">
+							{% if review.image %}
+							<div class="reiew-img-wrap">
+								<img src="{{ review.image.url }}" alt="" class="reiew-img">
+							</div>
+							{% else %}
+							<div class="none-img-wrap">
+								<p class="none-img d-flex justify-content-center align-items-center">
+									No<br>img</div>
+								</p>
+							{% endif %}
+							<ul class="list">
+								<li>{{ review.brand }}</li>
+								<li>{{ review.product }}</li>
+								<li>{{ review.category }}</li>
+							</ul>
+						</div>
+						<div class="dotted"></div>
+						<ul class="list">
+							<li class="list2"><span class="mr-3">{{ review.score }}</li>
+							<li class="dotted m-0"></li>
+							<li class="list2">{{ review.comment|linebreaksbr }}</li>
+							<li class="dotted m-0"></li>
+							<li class="list2">{{ review.created }}</li>
+							<li class="dotted m-0"></li>
+						</ul>
+						<ul class="d-flex justify-content-end mt-3">
+							<li class="list-edit d-flex align-items-center">
+								<a href="{% url 'review_edit' review.id %}" class="">編集する</a>
+							</li>
+							<li class="mypage-delete-btn">
+								<a href="{% url 'review_delete' review.id %}" class="text-center">
+									削除する
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				{% endfor %}
+				<div class="d-flex justify-content-between page_num-wrap">
+					<div>
+						{{ all_review.start_index }}～{{ all_review.end_index }}件を表示
+					</div>
+					<div class="d-flex">
+						{% if all_review.has_previous %}
+						<a href="?page={{ all_review.previous_page_number }}" class="return">&#8810;</a>
+						{% endif %}
+						{% for num in all_review.paginator.page_range %}
+						<div class="page_num">
+							{% if all_review.number == num %}
+							<p class="active-page">
+								<a class="" href="#!">
+									{{ num }}
+								</a>
+							</p>
+							{% else %}
+							<a href="?page={{ num }}" class="next-page">{{ num }}</a>
+							{% endif %}
+						</div>
+						{% endfor %}
+						{% if all_review.has_next %}
+						<a href="?page={{ all_review.paginator.num_pages }}" class="">
+							&#8811;
+						</a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+				<div class="mypage">
+					<p>あなたのクチコミ件数</p>
+					<div class="review-user-bg-there">
+						<div class="review-user-none">
+							<h5>{{ user_data.first_name }}さん</h5>
+							<p class="review-num">
+								クチコミ件数 {{ count }} 件
+							</p>
+							<div class="dotted"></div>
+							<div class="d-flex justify-content-end profile my-profile">
+								<p>
+									<a href="{% url 'review_new' %}">クチコミする</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="mypage-allnew">
+						<p>最新のクチコミ</p>
+						{% if review %}
+						<div class="review-gray">
+							<div class="review-white">
+								<div class="new-image">
+									{% if review.image %}
+									<img src="{{ review.image.url }}" alt="">
+									{% else %}
+									<div
+										class="review-img-none mx-auto d-flex justify-content-center align-items-center">
+										Non<br> Img</div>
+									{% endif %}
+									<ul class="review-form-side">
+										<li>{{ review.brand }}</li>
+										<li>{{ review.product }}</li>
+										<li>{{ review.score }}</li>
+									</ul>
+								</div>
+								<div class="dotted"></div>
+								<div class="review-edit text-center">
+									<a href="{% url 'review_detail' review.id %}">詳細</a>
+								</div>
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				{% else %}
+				<!-- ユーザー情報のみ -->
+				<!-- クチコミ情報がない場合 -->
+				<div class="mt-4 col-lg-7 col-12 text-center">
+					<p>まだクチコミの投稿はありません。<br>ぜひお使いの製品を投稿してください。</p>
+					<p class="myreview-list-btn"><a href="{% url 'review_new' %}"
+							class="d-flex align-items-center justify-content-center">投稿ページへ<span class="material-icons">
+								navigate_next
+							</span></a></p>
+				</div>
+				<div class="review-side-wrap-none">
+					<div class="mt-4">
+						<p class="bold-font">あなたのクチコミ件数</p>
+						<div class="review-user-bg-none d-flex justify-content-end">
+							<div class="review-user-none">
+								<h5>{{ user_data.first_name }}さん</h5>
+								<p class="review-num">クチコミ件数 {{ count }} 件</p>
+								<div class="dotted"></div>
+								<div class="d-flex justify-content-end profile my-profile">
+									<p><a href="{% url 'review_new' %}">クチコミする</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="mypage_newreview">
+							<p>最新のクチコミ</p>
+							{% if review %}
+							<div class="review-gray">
+								<div class="review-white">
+									<div class="new-image">
+										{% if review.image %}
+										<img src="{{ review.image.url }}" alt="">
+										{% else %}
+										<div class="review-img-none">Non<br> Img</div>
+										{% endif %}
+										<ul class="review-form-side">
+											<li></li>
+											<li>{{ review.brand }}</li>
+											<li>{{ review.product }}</li>
+											<li>{{ review.score }}</li>
+										</ul>
+									</div>
+									<div class="review-edit text-center">
+										<a href="{% url 'review_detail' review.id %}" class="">詳細</a>
+									</div>
+								</div>
+							</div>
+							{% else %}
+							<h4>まだ投稿はありません</h4>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	{% block extra_js %}
+	<script type=" text/javascript" src="{% static 'js/stripe.js' %}"></script>
+	{% endblock %}
+	{% endblock %}
