@@ -697,8 +697,8 @@ class ContactView(View):
 			if re.search('[ぁ-ん]', content) == None:
 				return redirect('thanks')
 
-			if re.search('https://', contact) == None:
-				return redirect('thanks')
+			# if re.search('https://', contact) == None:
+			# 	return redirect('thanks')
 
 			subject = 'お問い合わせありがとうございます。'
 			message = textwrap.dedent('''
